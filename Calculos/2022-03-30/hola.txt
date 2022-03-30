@@ -1,0 +1,4 @@
+Circulo (medidas en metros)
+Radio: 5 
+Perimetro: 31.416
+Area: 78.54
