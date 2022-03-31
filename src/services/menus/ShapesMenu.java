@@ -19,7 +19,6 @@ public class ShapesMenu extends Menu {
         Calculate c = new Calculate();
         GenerateFileService generateFileService = new GenerateFileService();
         String shapeData = "";
-        String filePath = "";
         do {
             int option = ReadInputUtil.readInteger(String.valueOf(sbMenu));
             typesShapesEnum = getOptionSelected(option);

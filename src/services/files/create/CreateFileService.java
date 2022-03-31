@@ -28,6 +28,7 @@ public class CreateFileService implements Runnable {
     @Override
     public void run() {
         setFilePath(createFile(path));
+        // despues escribir archivo
     }
 
     public String createFile(String path) {

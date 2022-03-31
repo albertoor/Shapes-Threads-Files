@@ -7,6 +7,7 @@ import services.files.write.WriteFileService;
 public class GenerateFileService  {
 
     public void generate(String shapeData) throws InterruptedException {
+        // Hacerlo async (un solo hilo)
         String path = CreateDirService.createDir();
         CreateFileService createFileService = new CreateFileService(path);
         Thread t1 = new Thread(createFileService);
