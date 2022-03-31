@@ -1,13 +1,10 @@
 package services.menus;
 
-import services.calculates.AskingForValuesService;
+import services.calculates.Calculate;
 import abstracts.Menu;
 import constants.MenuMessages;
 import enums.TypesShapesEnum;
 import services.files.GenerateFileService;
-import services.files.create.CreateDirService;
-import services.files.create.CreateFileService;
-import services.files.write.WriteFileService;
 import utils.ReadInputUtil;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -16,34 +13,35 @@ import static constants.ShapeMessages.*;
 
 public class ShapesMenu extends Menu {
     @Override
-    public void run() {
+    public void run() throws InterruptedException {
         TypesShapesEnum typesShapesEnum;
         StringBuilder sbMenu = fillMenuText();
-        AskingForValuesService asking = new AskingForValuesService();
+        Calculate c = new Calculate();
         GenerateFileService generateFileService = new GenerateFileService();
         String shapeData = "";
+        String filePath = "";
         do {
             int option = ReadInputUtil.readInteger(String.valueOf(sbMenu));
             typesShapesEnum = getOptionSelected(option);
             switch (typesShapesEnum) {
                 case CIRCLE:
-                    shapeData = asking.askingValues(typesShapesEnum, ASKING_RATIO, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_RATIO, UNIT);
                     generateFileService.generate(shapeData);
                     break;
                 case SQUARE:
-                    shapeData = asking.askingValues(typesShapesEnum, ASKING_SIDE, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE, UNIT);
                     generateFileService.generate(shapeData);
                     break;
                 case RECTANGLE:
-                    shapeData = asking.askingValues(typesShapesEnum, ASKING_HEIGHT, ASKING_WIDTH, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_HEIGHT, ASKING_WIDTH, UNIT);
                     generateFileService.generate(shapeData);
                     break;
                 case EQUILATERAL_TRIANGLE :
-                    shapeData = asking.askingValues(typesShapesEnum, ASKING_SIDE_A, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A, UNIT);
                     generateFileService.generate(shapeData);
                     break;
                 case ISOSCELES_TRIANGLE :
-                    shapeData = asking.askingValues(typesShapesEnum, ASKING_SIDE_A, ASKING_SIDE_B, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A, ASKING_SIDE_B, UNIT);
                     generateFileService.generate(shapeData);
                     break;
             }

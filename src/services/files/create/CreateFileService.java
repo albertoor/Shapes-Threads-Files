@@ -8,9 +8,29 @@ import static constants.FilesMessages.INPUT_FILE_NAME;
 import static constants.FilesMessages.FILE_EXIST;
 import static constants.FilesMessages.FILE_CREATED;
 
-public class CreateFileService  {
+public class CreateFileService implements Runnable {
     private final static String EXTENSION = ".txt";
-    public synchronized static String createFile(String path) {
+    private String path;
+    private String filePath;
+
+    public CreateFileService(String path) {
+        this.path = path;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    @Override
+    public void run() {
+        setFilePath(createFile(path));
+    }
+
+    public String createFile(String path) {
         boolean fileCreated = false;
         File file = null;
         do {
@@ -28,6 +48,10 @@ public class CreateFileService  {
                 fileCreated = false;
             }
         } while (!fileCreated);
+        System.out.println("this" + file.getPath());
+//        setFilePath(file.getPath());
         return file.getPath();
     }
+
+
 }

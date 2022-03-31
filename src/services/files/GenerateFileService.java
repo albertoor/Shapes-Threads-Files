@@ -6,26 +6,12 @@ import services.files.write.WriteFileService;
 
 public class GenerateFileService  {
 
-    public void generate(String shapeData) {
-        Creator creator = new Creator(shapeData);
-        Thread t1 = new Thread(creator);
+    public void generate(String shapeData) throws InterruptedException {
+        String path = CreateDirService.createDir();
+        CreateFileService createFileService = new CreateFileService(path);
+        Thread t1 = new Thread(createFileService);
         t1.start();
-    }
-
-    private class Creator implements Runnable{
-        private String shapeData;
-        private String path;
-
-        public Creator(String shapeData) {
-            this.shapeData = shapeData;
-
-        }
-
-        @Override
-        public void run() {
-            String dirPath = CreateDirService.createDir();
-            String filePath = CreateFileService.createFile(dirPath);
-            WriteFileService.write(shapeData, filePath);
-        }
+        t1.join();
+        WriteFileService.write(shapeData, createFileService.getFilePath());
     }
 }

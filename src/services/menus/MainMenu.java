@@ -36,6 +36,8 @@ public class MainMenu extends Menu {
             }catch (InterruptedProcessException ex){
                 if (ex.getMessage() != null)
                     JOptionPane.showMessageDialog(null, ex.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }while (!isProcessCompleted);
     }
