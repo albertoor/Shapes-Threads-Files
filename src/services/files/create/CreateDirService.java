@@ -9,10 +9,10 @@ public class CreateDirService {
     private static final String PATH = CALCULATES_ROUTE_TO_ADD;
     public static String createDir() {
         String nameDir = new DateFormatUtil().getCurrentDate();
-        File dir = new File(PATH+nameDir);
+        File dir = new File(PATH + nameDir);
         System.out.println(dir.getPath());
         boolean isDirCreated = dir.mkdir();
-        if (isDirCreated) System.out.println(String.format(DIR_CREATED, nameDir));
+        if (isDirCreated) System.out.printf((DIR_CREATED) + "%n", nameDir);
         return dir.getPath();
     }
 }

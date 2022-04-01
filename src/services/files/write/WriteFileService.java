@@ -23,7 +23,7 @@ public class WriteFileService implements Runnable{
         write(shapeData, path);
     }
 
-    public static void write(String shapeData, String path) {
+    public synchronized static void write(String shapeData, String path) {
         try {
             FileWriter fw = new FileWriter(path, StandardCharsets.UTF_8);
             String fileContent = shapeData;

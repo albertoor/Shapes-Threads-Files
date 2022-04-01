@@ -12,10 +12,6 @@ public class Circle implements Shape {
         this.ratio = ratio;
     }
 
-    public double getRatio() {
-        return ratio;
-    }
-
     @Override
     public double calculateArea() {
         return Math.PI * Math.pow(this.ratio, 2);

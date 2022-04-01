@@ -11,7 +11,13 @@ import static constants.FilesMessages.FILE_CREATED;
 public class CreateFileService implements Runnable {
     private final static String EXTENSION = ".txt";
     private String path;
+    private String shapeData;
     private String filePath;
+
+//    public CreateFileService(String path, String shapeData) {
+//        this.path = path;
+//        this.shapeData = shapeData;
+//    }
 
     public CreateFileService(String path) {
         this.path = path;
@@ -28,10 +34,15 @@ public class CreateFileService implements Runnable {
     @Override
     public void run() {
         setFilePath(createFile(path));
+//        boolean isCreated = createFile(path);
+//        if (isCreated) {
+//            Thread t1 = new Thread(new WriteFileService(shapeData, path));
+//            t1.start();
+//        }
         // despues escribir archivo
     }
 
-    public String createFile(String path) {
+    public synchronized String createFile(String path) {
         boolean fileCreated = false;
         File file = null;
         do {
@@ -42,16 +53,18 @@ public class CreateFileService implements Runnable {
                     JOptionPane.showMessageDialog(null, String.format(FILE_EXIST, nameFile));
                 else{
                     fileCreated = file.createNewFile();
-                    if (fileCreated)
+                    if (fileCreated){
                         JOptionPane.showMessageDialog(null, String.format(FILE_CREATED, nameFile));
+//                        setFilePath(file.getPath());
+                    }
+
                 }
             }catch (NullPointerException | IOException e){
-                fileCreated = false;
+                System.out.println("Error");
             }
         } while (!fileCreated);
-        System.out.println("this" + file.getPath());
-//        setFilePath(file.getPath());
         return file.getPath();
+//        return fileCreated;
     }
 
 

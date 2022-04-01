@@ -9,7 +9,6 @@ public class ReadFilesDirService {
         int count = 0;
         for (final File filePath : new File(dirPath).listFiles()){
             if (filePath.isFile()){
-                System.out.println(filePath);
                 filesPath.put(count++, String.valueOf(filePath));
             }
         }

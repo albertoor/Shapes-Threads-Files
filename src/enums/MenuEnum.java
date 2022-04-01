@@ -6,7 +6,6 @@ public enum MenuEnum {
     OPEN_FILE(MenuMessages.OPEN_FILE, 2),
     EXIT(MenuMessages.EXIT, 3);
 
-
     private final String optionName;
     private final int option;
 

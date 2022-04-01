@@ -1,11 +1,11 @@
 package services.menus;
 
+import exceptions.InterruptedProcessException;
 import services.calculates.Calculate;
 import abstracts.Menu;
 import constants.MenuMessages;
 import enums.TypesShapesEnum;
-import services.files.GenerateFileService;
-import utils.ReadInputUtil;
+import services.files.GenerateFileService;;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -13,15 +13,14 @@ import static constants.ShapeMessages.*;
 
 public class ShapesMenu extends Menu {
     @Override
-    public void run() throws InterruptedException {
-        TypesShapesEnum typesShapesEnum;
+    public void run() throws InterruptedException, InterruptedProcessException {
+        TypesShapesEnum typesShapesEnum = null;
         StringBuilder sbMenu = fillMenuText();
         Calculate c = new Calculate();
         GenerateFileService generateFileService = new GenerateFileService();
         String shapeData = "";
         do {
-            int option = ReadInputUtil.readInteger(String.valueOf(sbMenu));
-            typesShapesEnum = getOptionSelected(option);
+            typesShapesEnum = (TypesShapesEnum) getOptionSelected(String.valueOf(sbMenu), typesShapesEnum);
             switch (typesShapesEnum) {
                 case CIRCLE:
                     shapeData = c.calculate(typesShapesEnum, ASKING_RATIO, UNIT);
@@ -56,7 +55,8 @@ public class ShapesMenu extends Menu {
         return textMenu;
     }
 
-    public static TypesShapesEnum getOptionSelected(int option) {
+    @Override
+    public Enum getOptionName(int option) {
         return Stream.of(TypesShapesEnum.values())
             .filter(o -> o.getOption() == option).findFirst().orElse(null);
     }

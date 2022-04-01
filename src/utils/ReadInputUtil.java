@@ -1,19 +1,10 @@
 package utils;
 
 import javax.swing.*;
-import java.util.InputMismatchException;
+import static constants.MenuMessages.OPTION_NOT_VALID;
+import static constants.MenuMessages.QUESTION_TO_LEAVE;
 
 public class ReadInputUtil {
-    public static int readInteger(String prompt) {
-        int input = 0;
-        try {
-            input = Integer.parseInt(JOptionPane.showInputDialog(prompt));
-        }catch (InputMismatchException e){
-            System.out.println("Cuidado! No has ingresado un numero");
-        }
-        return input;
-    }
-
     // Read Double value
     public static double readDouble(String str1, String str2) {
         boolean valid = false;
@@ -29,11 +20,11 @@ public class ReadInputUtil {
                 else
                     return input;
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Ingresa un numero valido");
+                JOptionPane.showMessageDialog(null, OPTION_NOT_VALID);
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             } catch (NullPointerException ex) {
-                int choiceUs = JOptionPane.showConfirmDialog(null, "¿Desea salir de la aplicación?");
+                int choiceUs = JOptionPane.showConfirmDialog(null, QUESTION_TO_LEAVE);
                 if (choiceUs == 0) {
                     System.exit(0);
                 }
