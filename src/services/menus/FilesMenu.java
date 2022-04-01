@@ -1,32 +1,25 @@
 package services.menus;
 
-import abstracts.Menu;
-import services.OpenFileAsync;
+import services.files.open.OpenFileAsync;
 import services.files.read.ReadDirService;
-import services.files.read.ReadFileService;
 import services.files.read.ReadFilesDirService;
 import javax.swing.*;
-import java.awt.desktop.OpenFilesEvent;
 import java.util.*;
-
+import java.util.stream.Collectors;
 import static constants.MenuMessages.SELECT_DIR;
 import static constants.PathsMessages.LIST_DIRS;
-import static constants.FilesMessages.FILE_DATA;
 
-public class FilesMenu  {
+public class FilesMenu extends Thread {
 
-    public static void run() {
+    public void run() {
         HashMap<Integer, String> dirs = ReadDirService.readDirs();
         String dirPath = getOptionSelected(dirs);
         HashMap<Integer, String> files = ReadFilesDirService.read(dirPath);
-        String filePath = getOptionSelected(files);
-
-        OpenFileAsync.openFile(filePath);
-
-//        String fileContent = ReadFileService.read(filePath);
-//        String result = String.format(FILE_DATA, filePath, fileContent);
-//        JOptionPane.showMessageDialog(null, result);
-//        System.exit(0);
+        List<String> filesPaths = getOptionFiles(files);
+        long start = System.nanoTime();
+        new OpenFileAsync().openFile(filesPaths);
+        long end = System.nanoTime();
+        System.out.println(end - start);
     }
 
     public static StringBuilder fillMenuText(HashMap<Integer, String> dirs){
@@ -44,7 +37,6 @@ public class FilesMenu  {
 
     public static String getOptionSelected(HashMap<Integer, String> map) {
         String dirPath = "";
-        List<String> files = new ArrayList<>();
         boolean hasDir = false;
         StringBuilder sbMenu = fillMenuText(map);
         do {
@@ -60,5 +52,31 @@ public class FilesMenu  {
             }
         }while (!hasDir);
         return dirPath;
+    }
+
+    public static List<String> getOptionFiles(HashMap<Integer, String> map) {
+        List<String> files = new ArrayList<>();
+        boolean hasFiles = false;
+        StringBuilder sbMenu = fillMenuText(map);
+        do {
+            try {
+                String options = JOptionPane.showInputDialog(sbMenu);
+                files = filterFilesList(map, options);
+                if (files.size() > 0) hasFiles = true;
+            }catch (NullPointerException ex) {
+                int optionUser = JOptionPane.showConfirmDialog(null,"¿Desea salir de la aplicación?");
+                if (optionUser == 0) System.exit(0);
+            }
+        }while (!hasFiles);
+        return files;
+    }
+
+    public static List<String> filterFilesList(HashMap<Integer, String> map, String fileOptions) {
+        List<Integer> options = Arrays.asList(fileOptions.split(",")).stream().map(Integer::parseInt).collect(Collectors.toList());
+        List<String> filesPaths = new ArrayList<>();
+        for (Map.Entry<Integer, String> dir : map.entrySet())
+            for (int o : options)
+                if (dir.getKey() == o) filesPaths.add(dir.getValue());
+        return filesPaths;
     }
 }

@@ -24,7 +24,7 @@ public class MainMenu extends Menu {
                             new ShapesMenu().run();
                             break;
                         case OPEN_FILE:
-                            FilesMenu.run();
+                            new FilesMenu().run();
                             break;
                         case EXIT:
                             JOptionPane.showMessageDialog(null, BYE);
