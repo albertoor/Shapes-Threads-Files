@@ -1,13 +1,14 @@
 package services.menus;
 
 import abstracts.Menu;
+import services.OpenFileAsync;
 import services.files.read.ReadDirService;
 import services.files.read.ReadFileService;
 import services.files.read.ReadFilesDirService;
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.awt.desktop.OpenFilesEvent;
+import java.util.*;
+
 import static constants.MenuMessages.SELECT_DIR;
 import static constants.PathsMessages.LIST_DIRS;
 import static constants.FilesMessages.FILE_DATA;
@@ -19,10 +20,13 @@ public class FilesMenu  {
         String dirPath = getOptionSelected(dirs);
         HashMap<Integer, String> files = ReadFilesDirService.read(dirPath);
         String filePath = getOptionSelected(files);
-        String fileContent = ReadFileService.read(filePath);
-        String result = String.format(FILE_DATA, filePath, fileContent);
-        JOptionPane.showMessageDialog(null, result);
-        System.exit(0);
+
+        OpenFileAsync.openFile(filePath);
+
+//        String fileContent = ReadFileService.read(filePath);
+//        String result = String.format(FILE_DATA, filePath, fileContent);
+//        JOptionPane.showMessageDialog(null, result);
+//        System.exit(0);
     }
 
     public static StringBuilder fillMenuText(HashMap<Integer, String> dirs){
@@ -40,6 +44,7 @@ public class FilesMenu  {
 
     public static String getOptionSelected(HashMap<Integer, String> map) {
         String dirPath = "";
+        List<String> files = new ArrayList<>();
         boolean hasDir = false;
         StringBuilder sbMenu = fillMenuText(map);
         do {
