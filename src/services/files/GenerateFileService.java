@@ -1,18 +1,14 @@
 package services.files;
 
 import services.files.create.CreateDirService;
-import services.files.create.CreateFileService;
-import services.files.write.WriteFileService;
+import threads.CreateWriteFileService;
 
 public class GenerateFileService  {
-
-    public void generate(String shapeData) throws InterruptedException {
-        // Hacerlo async (un solo hilo)
+    public static void generate(String shapeData) throws InterruptedException {
         String path = CreateDirService.createDir();
-        CreateFileService createFileService = new CreateFileService(path);
-        Thread t1 = new Thread(createFileService);
+        CreateWriteFileService createWriteFileService = new CreateWriteFileService(path, shapeData);
+        Thread t1 = new Thread(createWriteFileService);
         t1.start();
         t1.join();
-        WriteFileService.write(shapeData, createFileService.getFilePath());
     }
 }

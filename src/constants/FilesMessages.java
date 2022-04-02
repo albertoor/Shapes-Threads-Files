@@ -7,5 +7,4 @@ public class FilesMessages {
     public final static String INPUT_FILE_NAME = "Ingresa el nombre del archivo: ";
     public final static String FILE_CREATED = "Archivo '%s' has sido creado!";
     public final static String FILE_WRITTEN = "Se ha escrito el archivo '%s' correctamente";
-    public final static String FILE_DATA = "La informacion del archivo '%s' es: \n%s";
 }

@@ -1,7 +1,6 @@
 package services.files.open;
 
 import threads.MultithreadingOpenFiles;
-
 import java.util.List;
 
 public class OpenFileAsync {

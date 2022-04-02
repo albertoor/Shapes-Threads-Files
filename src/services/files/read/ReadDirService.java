@@ -16,5 +16,4 @@ public class ReadDirService {
         }
         return dirs;
     }
-    //        dirs.forEach((key, value) -> System.out.println(String.format(LIST_DIRS, key, value)));
 }

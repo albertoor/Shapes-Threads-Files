@@ -1,8 +1,5 @@
 package threads;
 
-import java.io.IOException;
-import java.util.List;
-
 public class MultithreadingOpenFiles implements Runnable {
     private String filePath;
 

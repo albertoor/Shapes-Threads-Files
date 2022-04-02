@@ -1,4 +1,3 @@
-import exceptions.InterruptedProcessException;
 import services.menus.MainMenu;
 
 public class Main {
