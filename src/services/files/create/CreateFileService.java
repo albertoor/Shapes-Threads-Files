@@ -1,7 +1,5 @@
 package services.files.create;
 
-import services.files.write.WriteFileService;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +16,9 @@ public class CreateFileService {
             try{
                 String nameFile = JOptionPane.showInputDialog(INPUT_FILE_NAME);
                 file = new File(path + "/" +  nameFile + EXTENSION);
-                if (file.exists())
+                if (file.exists()) {
                     JOptionPane.showMessageDialog(null, String.format(FILE_EXIST, nameFile));
+                }
                 else{
                     fileCreated = file.createNewFile();
                     if (fileCreated) {

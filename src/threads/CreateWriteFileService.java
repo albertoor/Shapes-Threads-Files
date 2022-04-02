@@ -15,7 +15,7 @@ public class CreateWriteFileService implements Runnable{
     @Override
     public void run() {
         String filePath = CreateFileService.createFile(dirPath);
-        if (!filePath.isEmpty() && !filePath.isEmpty()) {
+        if (!filePath.isEmpty() && !shapeDate.isEmpty()) {
             WriteFileService.write(shapeDate, filePath);
         }
     }
