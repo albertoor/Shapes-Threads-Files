@@ -6,9 +6,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
-import static constants.FilesMessages.INPUT_FILE_NAME;
-import static constants.FilesMessages.FILE_EXIST;
-import static constants.FilesMessages.FILE_CREATED;
+import static constants.FilesMessages.*;
 
 public class CreateFileService {
     private final static String EXTENSION = ".txt";
@@ -29,7 +27,7 @@ public class CreateFileService {
                     }
                 }
             }catch (NullPointerException | IOException e){
-                System.out.println("Error");
+               JOptionPane.showMessageDialog(null, BAD);
             }
         } while (!fileCreated);
         return file.getPath();

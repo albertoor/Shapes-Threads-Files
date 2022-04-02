@@ -22,23 +22,23 @@ public class ShapesMenu extends Menu {
             typesShapesEnum = (TypesShapesEnum) getOptionSelected(String.valueOf(sbMenu), typesShapesEnum);
             switch (typesShapesEnum) {
                 case CIRCLE:
-                    shapeData = c.calculate(typesShapesEnum, ASKING_RATIO, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_RATIO);
                     GenerateFileService.generate(shapeData);
                     break;
                 case SQUARE:
-                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE);
                     GenerateFileService.generate(shapeData);
                     break;
                 case RECTANGLE:
-                    shapeData = c.calculate(typesShapesEnum, ASKING_HEIGHT, ASKING_WIDTH, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_HEIGHT, ASKING_WIDTH);
                     GenerateFileService.generate(shapeData);
                     break;
                 case EQUILATERAL_TRIANGLE :
-                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A);
                     GenerateFileService.generate(shapeData);
                     break;
                 case ISOSCELES_TRIANGLE :
-                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A, ASKING_SIDE_B, UNIT);
+                    shapeData = c.calculate(typesShapesEnum, ASKING_SIDE_A, ASKING_SIDE_B);
                     GenerateFileService.generate(shapeData);
                     break;
                 case BACK:

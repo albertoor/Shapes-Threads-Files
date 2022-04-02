@@ -13,9 +13,9 @@ public class CalculateService {
         this.unitSetting = unitSetting;
     }
 
-    public String calculate(TypesShapesEnum typesShapesEnum, String str1, String str2) {
+    public String calculate(TypesShapesEnum typesShapesEnum, String str1) {
         String data = "";
-        double value1 = ReadInputUtil.readDouble(str1, str2);
+        double value1 = ReadInputUtil.readDouble(str1, unitSetting.getUnit());
         double valUnit = getValueUnit(value1);
         switch (typesShapesEnum){
             case CIRCLE :
@@ -32,10 +32,10 @@ public class CalculateService {
         return data;
     }
 
-    public String calculate(TypesShapesEnum typesShapesEnum, String str1, String str2, String str3) {
+    public String calculate(TypesShapesEnum typesShapesEnum, String str1, String str2) {
         String data = "";
-        double value1 = ReadInputUtil.readDouble(str1, str3);
-        double value2 = ReadInputUtil.readDouble(str2, str3);
+        double value1 = ReadInputUtil.readDouble(str1, unitSetting.getUnit());
+        double value2 = ReadInputUtil.readDouble(str2, unitSetting.getUnit());
         double valUnit1 = getValueUnit(value1);
         double valUnit2 = getValueUnit(value2);
         switch (typesShapesEnum){
