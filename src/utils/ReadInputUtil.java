@@ -2,7 +2,6 @@ package utils;
 
 import javax.swing.*;
 import static constants.MenuMessages.OPTION_NOT_VALID;
-import static constants.MenuMessages.QUESTION_TO_LEAVE;
 import static constants.MenuMessages.NOT_ZERO;
 
 public class ReadInputUtil {
@@ -18,6 +17,7 @@ public class ReadInputUtil {
                     JOptionPane.showMessageDialog(null,NOT_ZERO);
                 else
                     return input;
+                if (choice == null) throw new NullPointerException();
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, OPTION_NOT_VALID);
             } catch (IllegalArgumentException e) {

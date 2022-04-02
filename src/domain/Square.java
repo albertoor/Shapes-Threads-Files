@@ -27,7 +27,7 @@ public class Square implements Shape {
     @Override
     public String getPropsMsg(String unit) {
         NumberFormat f = NumberFormat.getInstance();
-        return String.format(PROPS_SQUARE, UNIT, f.format(side),
+        return String.format(PROPS_SQUARE, unit, f.format(side),
             f.format(calculatePerimeter()), f.format(calculateArea()));
     }
 }

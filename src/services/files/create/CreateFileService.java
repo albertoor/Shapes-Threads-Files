@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static constants.FilesMessages.*;
+import static constants.MenuMessages.NOT_NULL;
 
 public class CreateFileService {
     private final static String EXTENSION = ".txt";
@@ -14,19 +15,22 @@ public class CreateFileService {
         File file = null;
         do {
             try{
-                String nameFile = JOptionPane.showInputDialog(INPUT_FILE_NAME);
-                file = new File(path + "/" +  nameFile + EXTENSION);
+                String fileName = JOptionPane.showInputDialog(INPUT_FILE_NAME);
+                if (fileName == null) throw new NullPointerException();
+                file = new File(path + "/" +  fileName + EXTENSION);
                 if (file.exists()) {
-                    JOptionPane.showMessageDialog(null, String.format(FILE_EXIST, nameFile));
+                    JOptionPane.showMessageDialog(null, String.format(FILE_EXIST, fileName));
                 }
                 else{
                     fileCreated = file.createNewFile();
                     if (fileCreated) {
-                        JOptionPane.showMessageDialog(null, String.format(FILE_CREATED, nameFile));
+                        JOptionPane.showMessageDialog(null, String.format(FILE_CREATED, fileName));
                     }
                 }
-            }catch (NullPointerException | IOException e){
+            }catch (IOException e){
                JOptionPane.showMessageDialog(null, BAD);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, NOT_NULL);
             }
         } while (!fileCreated);
         return file.getPath();

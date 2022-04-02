@@ -17,4 +17,5 @@ public class MenuMessages {
     public final static String NOT_VALID = "Opcion no valida";
     public static final String SELECT_SHAPE = "Selecciona una figura: ";
     public static final String NOT_ZERO = "El valor no puede ser 0";
+    public static final String NOT_NULL = "El nombre del archivo no debe ser nullo";
 }
