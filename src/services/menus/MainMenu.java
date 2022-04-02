@@ -2,8 +2,10 @@ package services.menus;
 
 import abstracts.Menu;
 import enums.MenuEnum;
-import exceptions.InterruptedProcessException;
+import utils.Exit;
+
 import javax.swing.JOptionPane;
+import java.util.Objects;
 import java.util.stream.Stream;
 import static constants.MenuMessages.SELECT_MENU_OPTION;
 import static constants.MenuMessages.SELECT_OPTION;
@@ -14,7 +16,6 @@ public class MainMenu extends Menu {
     public void run() {
         MenuEnum menuEnum = null;
         StringBuilder sbMenu = fillMenuText();
-        boolean isProcessCompleted = false;
         do {
             try {
                 menuEnum = (MenuEnum) getOptionSelected(String.valueOf(sbMenu), menuEnum);
@@ -31,15 +32,13 @@ public class MainMenu extends Menu {
                             System.exit(0);
                             break;
                     }
-                }
-                isProcessCompleted = true;
-            }catch (InterruptedProcessException ex){
-                if (ex.getMessage() != null)
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }else throw new NullPointerException();;
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (NullPointerException ex) {
+                Exit.exit();
             }
-        }while (!isProcessCompleted);
+        }while (!Objects.equals(menuEnum.EXIT, menuEnum));
     }
 
     @Override

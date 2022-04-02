@@ -1,6 +1,0 @@
-Triangulo Isosceles (medidas en metros)
-Lado A: 10 
-Lado B: 8 
-Altura: 9.165 
-Perimetro: 28
-Area: 36.661

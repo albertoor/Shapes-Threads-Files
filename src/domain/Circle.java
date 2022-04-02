@@ -23,9 +23,9 @@ public class Circle implements Shape {
     }
 
     @Override
-    public String toString() {
+    public String getPropsMsg(String unit) {
         NumberFormat f = NumberFormat.getInstance();
-        return String.format(PROPS_CIRCLE, UNIT, f.format(ratio),
+        return String.format(PROPS_CIRCLE, unit, f.format(ratio),
             f.format(calculatePerimeter()), f.format(calculateArea()));
     }
 }

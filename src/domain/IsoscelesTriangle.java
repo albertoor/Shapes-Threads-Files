@@ -35,9 +35,9 @@ public class IsoscelesTriangle extends Triangle implements Shape {
     }
 
     @Override
-    public String toString() {
+    public String getPropsMsg(String unit) {
         NumberFormat f = NumberFormat.getInstance();
-        return String.format(PROPS_IS_T, UNIT, f.format(sideA), f.format(sideB), f.format(calculateHeight()),
+        return String.format(PROPS_IS_T, unit, f.format(sideA), f.format(sideB), f.format(calculateHeight()),
             f.format(calculatePerimeter()), f.format(calculateArea()));
     }
 }

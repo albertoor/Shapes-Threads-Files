@@ -5,7 +5,6 @@ import static constants.MenuMessages.OPTION_NOT_VALID;
 import static constants.MenuMessages.QUESTION_TO_LEAVE;
 
 public class ReadInputUtil {
-    // Read Double value
     public static double readDouble(String str1, String str2) {
         boolean valid = false;
         double input = 0.0;

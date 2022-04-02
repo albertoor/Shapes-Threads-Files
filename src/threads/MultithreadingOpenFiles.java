@@ -7,7 +7,6 @@ public class MultithreadingOpenFiles implements Runnable {
         this.filePath = filePath;
     }
 
-
     @Override
     public void run() {
         openFile(filePath);

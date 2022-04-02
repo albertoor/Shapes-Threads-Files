@@ -1,4 +1,5 @@
 package enums;
+;
 
 import constants.MenuMessages;
 import constants.ShapeMessages;
@@ -8,7 +9,8 @@ public enum TypesShapesEnum {
     SQUARE(ShapeMessages.SQUARE, 2),
     RECTANGLE(ShapeMessages.RECTANGLE, 3),
     EQUILATERAL_TRIANGLE(ShapeMessages.EQUILATERAL_TRIANGLE, 4),
-    ISOSCELES_TRIANGLE(ShapeMessages.ISOSCELES_TRIANGLE, 5);
+    ISOSCELES_TRIANGLE(ShapeMessages.ISOSCELES_TRIANGLE, 5),
+    BACK(MenuMessages.BACK, 6);
 
     private final String optionName;
     private final int option;

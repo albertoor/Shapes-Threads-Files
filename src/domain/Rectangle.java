@@ -27,7 +27,7 @@ public class Rectangle implements Shape {
     }
 
     @Override
-    public String toString() {
+    public String getPropsMsg(String unit) {
         NumberFormat f = NumberFormat.getInstance();
         return String.format(PROPS_RECTANGLE, UNIT, f.format(width), f.format(height),
             f.format(calculatePerimeter()), f.format(calculateArea()));

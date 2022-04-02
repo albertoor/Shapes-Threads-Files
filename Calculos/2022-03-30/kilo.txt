@@ -1,4 +1,0 @@
-Circulo (medidas en metros)
-Radio: 9 
-Perimetro: 56.549
-Area: 254.469

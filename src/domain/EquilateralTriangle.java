@@ -30,9 +30,9 @@ public class EquilateralTriangle extends Triangle implements Shape {
     }
 
     @Override
-    public String toString() {
+    public String getPropsMsg(String unit) {
         NumberFormat f = NumberFormat.getInstance();
-        return String.format(PROPS_EQ_T, UNIT, f.format(side), f.format(calculateHeight()),
+        return String.format(PROPS_EQ_T, unit, f.format(side), f.format(calculateHeight()),
             f.format(calculatePerimeter()), f.format(calculateArea()));
     }
 }
