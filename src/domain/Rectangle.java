@@ -1,7 +1,6 @@
 package domain;
 
 import interfaces.Shape;
-
 import java.text.NumberFormat;
 
 import static constants.ShapeMessages.PROPS_RECTANGLE;

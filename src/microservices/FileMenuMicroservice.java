@@ -1,7 +1,7 @@
 package microservices;
 
 import utils.Exit;
-import utils.Validations;
+import utils.ValidationsUtil;
 
 import javax.swing.*;
 import java.util.*;
@@ -10,8 +10,8 @@ import static constants.MenuMessages.*;
 import static constants.PathsMessages.LIST_DIRS;
 
 public class FileMenuMicroservice {
-    public static StringBuilder fillMenuText(HashMap<Integer, String> dirs){
-        StringBuilder textMenu = new StringBuilder(SELECT_DIR);
+    public static StringBuilder fillMenuText(HashMap<Integer, String> dirs, String header){
+        StringBuilder textMenu = new StringBuilder(header);
         dirs.forEach((k, v) -> textMenu.append(String.format(LIST_DIRS, k, v)));
         return textMenu;
     }
@@ -26,7 +26,7 @@ public class FileMenuMicroservice {
     public static String getOptionSelected(HashMap<Integer, String> map) {
         String dirPath = "";
         boolean hasDir = false;
-        StringBuilder sbMenu = fillMenuText(map);
+        StringBuilder sbMenu = fillMenuText(map, SELECT_DIR);
         do {
             try {
                 String option = JOptionPane.showInputDialog(sbMenu);
@@ -45,12 +45,12 @@ public class FileMenuMicroservice {
     public static List<String> getOptionFiles(HashMap<Integer, String> map) {
         List<String> files = new ArrayList<>();
         boolean hasFiles = false;
-        StringBuilder sbMenu = fillMenuText(map);
+        StringBuilder sbMenu = fillMenuText(map, SELECT_DIR_OR_MORE);
         do {
             try {
                 String options = JOptionPane.showInputDialog(sbMenu);
                 if (options == null) throw new NullPointerException();
-                if (Validations.validateFileFormat(options)){
+                if (ValidationsUtil.validateFileFormat(options)){
                     files = filterFilesList(map, options);
                     if (files.size() > 0) hasFiles = true;
                 }else{

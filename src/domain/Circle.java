@@ -2,7 +2,6 @@ package domain;
 
 import interfaces.Shape;
 import static constants.ShapeMessages.PROPS_CIRCLE;
-import static constants.ShapeMessages.UNIT;
 import java.text.NumberFormat;
 
 public class Circle implements Shape {

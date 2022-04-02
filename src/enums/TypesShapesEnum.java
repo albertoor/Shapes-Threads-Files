@@ -1,5 +1,4 @@
 package enums;
-;
 
 import constants.MenuMessages;
 import constants.ShapeMessages;

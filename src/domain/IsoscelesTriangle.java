@@ -2,11 +2,9 @@ package domain;
 
 import abstracts.Triangle;
 import interfaces.Shape;
-
 import java.text.NumberFormat;
-
 import static constants.ShapeMessages.PROPS_IS_T;
-import static constants.ShapeMessages.UNIT;
+
 
 public class IsoscelesTriangle extends Triangle implements Shape {
     private double sideA;

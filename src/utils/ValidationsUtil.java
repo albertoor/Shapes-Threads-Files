@@ -1,6 +1,6 @@
 package utils;
 
-public class Validations {
+public class ValidationsUtil {
     public static boolean validateFileFormat (String str) {
         return str.matches("((?<!^,)\\d+(,(?!$)|$))+");
     }
